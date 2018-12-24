@@ -1,0 +1,38 @@
+.tabbar{
+  height: 50px; position: fixed; 
+  left: 0; bottom: 0; width: 100%; max-width: 768px;
+  border: 1px solid #ccc; background: #fff;
+}
+.tabbar-children{
+  margin-bottom: 50px;
+}
+.tabbar-content{
+  display: flex; height: 100%;
+}
+.tabbar-item{
+  flex: 1; display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; flex-direction: column;
+}
+.iconfont{
+  font-size: 24px !important;
+}
+.tabbar-text{
+  font-size: 14px;
+}
+.active{
+  color: #f00 !important;
+}
+a{
+  text-decoration: none;
+  color: #333;
+}
+
+/* a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+  color: #333;
+} */
