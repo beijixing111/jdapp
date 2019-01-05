@@ -1,0 +1,64 @@
+$inputH: 50px;
+
+input{
+	-webkit-appearance:none;
+}
+.login-content{
+	padding-top: 2rem;
+	.login-item{
+		width: 88%; padding: 0.3rem 0; height: 0.5rem;
+		overflow: hidden; margin: 20px auto;
+		border-bottom: 0.01rem solid #e2e2e2;
+		display: flex; align-items: center;
+		flex-direction: row;
+		position: relative; 
+		&.mar{
+			margin-bottom: 50px; 
+		}
+		input{ 
+			padding-right: 0.3rem; box-sizing: border-box;
+			font-size: 0.34rem; color: #333; 
+			width: 100%; height: 100%; 
+			outline: none; box-shadow: none;
+			border: none;
+			&::-webkit-placeholder{
+				font-size: 14px; color: #666;
+			}
+			&:-webkit-autofill{
+				box-shadow: 0 0 0px 1000px white inset; 
+			}
+		}
+		.clear{
+			position: absolute; right: 0; 
+			display: flex; width: 0.5rem; height: 0.5rem;
+			justify-content: center; cursor: pointer;
+      align-items: flex-end;  
+			font-size: 30px; color: #ccc;
+			&.rig{
+				right: 1.75rem;
+			}
+		}
+		.forget-pw{
+			position: absolute; right: 0;  
+			display: flex; justify-content: flex-end; 
+			align-items: center; font-size: 0.30rem;
+			color: #222; padding-left: 0.3rem; 
+			border-left: 0.01rem solid #ccc; 
+			height: 26px; line-height: 26px;
+		}
+	}
+	.login-btn{
+		width: 88%; height: 1rem; line-height: 1rem;
+		display: block; border-radius: 0.5rem;  
+		color: #fff; font-size: 0.34rem; 
+		background: #03A9F4; 
+		background-image: linear-gradient(90deg,#fab3b3,#ffbcb3 73%,#ffcaba);
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(255,62,62,.2);
+		margin: 0 auto;
+		border: none; box-shadow: none; 
+		outline: none; cursor: pointer;
+		&.highlight{
+			background: #e73d77;
+		}
+	}
+}

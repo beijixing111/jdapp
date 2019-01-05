@@ -1,10 +1,10 @@
 .tabbar{
   height: 50px; position: fixed; 
-  left: 0; bottom: 0; width: 100%; max-width: 768px;
-  border: 1px solid #ccc; background: #fff;
+  bottom: 0; width: 100%; max-width: 768px;
+  border-top: 0.01rem solid #ccc; background: #fff;
 }
 .tabbar-children{
-  margin-bottom: 50px;
+  padding-bottom: 50px; height: 100%; box-sizing: border-box;
 }
 .tabbar-content{
   display: flex; height: 100%;
@@ -13,13 +13,15 @@
   flex: 1; display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; flex-direction: column;
+  height: 100%; 
+  flex-direction: column;
 }
 .iconfont{
-  font-size: 24px !important;
+  font-size: 22px !important;
+  margin-bottom: 2px;
 }
 .tabbar-text{
-  font-size: 14px;
+  font-size: 12px;
 }
 .active{
   color: #f00 !important;

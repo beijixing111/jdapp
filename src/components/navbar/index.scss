@@ -1,0 +1,28 @@
+
+$navbar_h: 50px;
+
+.navbar{
+	height: $navbar_h; line-height: $navbar_h;
+	border-bottom: 0.01rem solid #e2e2e2;
+	display: flex; background: #fff;
+	position: fixed; top: 0; width: 100%;
+	z-index: 99;
+	.left{
+		display: flex; justify-content: flex-start; align-items: center;
+		color: #333; font-size: 0.32rem; width: 25%; float: left; 
+		padding-left: 8px; box-sizing: border-box;
+		i{
+			font-weight: bold; margin: 0 -5px 0 0;
+		}
+	}
+	.center{
+		display: block; text-align: center; 
+		color: #333; font-size: 0.36rem; width: 50%; overflow: hidden; 
+    text-overflow: ellipsis; white-space: nowrap;
+	}
+	.right{
+		display: flex; justify-content: flex-end; align-items: center;
+		color: #333; font-size: 0.32rem; width: 25%; float: right;
+		box-sizing: border-box; padding-right: 8px;
+	}
+}

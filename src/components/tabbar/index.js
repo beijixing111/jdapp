@@ -1,6 +1,6 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './index.css';
+import './index.scss';
 
 const tabbarArr = [{
   img: 'icon-home',
@@ -22,7 +22,7 @@ const tabbarArr = [{
 
 
 const Tabbar = (WrappedComponent) => class Tabbar extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -34,20 +34,20 @@ const Tabbar = (WrappedComponent) => class Tabbar extends Component {
     this.setState({
       index: i
     });
-  } 
+  }
   render() {
     //const url = window.location.href;
     // <Link to={item.link} key={i} className={"tabbar-item " + (url.indexOf(item.link) > -1 ? 'active' : '')}  >
     //               <div className={"iconfont " + item.img}></div>
     //               <div className="tabbar-text">{item.text}</div>
     //             </Link>
-    return (
-      <>
-        <div className="tabbar-children">
+    return ( <
+      >
+      <div className="tabbar-children">
           <WrappedComponent />
-        </div>
-        <div className="tabbar">
-          <div className="tabbar-content">
+        </div> <
+      div className = "tabbar" >
+      <div className="tabbar-content">
             {
               tabbarArr.map((item, i) => (
                 <NavLink to={item.link} key={i} className="tabbar-item" activeClassName="active" >
@@ -56,9 +56,9 @@ const Tabbar = (WrappedComponent) => class Tabbar extends Component {
                 </NavLink>
               ))
             }
-          </div>
-        </div>
-      </>
+          </div> <
+      /div> <
+      />
     )
   }
 }

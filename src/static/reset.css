@@ -46,9 +46,13 @@ a{
 html,body{
 	height: 100%; 
 }
+body{
+	padding-top: 56px;
+}
 .shadow-none{
 	box-shadow: none !important;
 }
+
 *{
 	-webkit-tap-highlight-color: rgba(0, 0, 0, transparent); 
   -webkit-tap-highlight-color: transparent;

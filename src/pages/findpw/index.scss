@@ -1,0 +1,50 @@
+.findpw-container{
+	padding: 1.5rem 0;
+	.findpw-item{
+		width: 88%; padding: 0.3rem 0; height: 0.5rem;
+		overflow: hidden; margin: 0.2rem auto 1rem;
+		border-bottom: 0.01rem solid #e2e2e2;
+		display: flex; align-items: center;
+		flex-direction: row; position: relative; 
+		&.focused{
+			border-bottom: 0.01rem solid #409eff;
+		};
+		.label{
+			display: flex; width: 1.5rem;
+			font-size: 0.34rem; align-items: center;
+		} 
+		input{ 
+			padding-right: 0.3rem; box-sizing: border-box; 
+			font-size: 0.34rem; color: #333; 
+			width: 100%; height: 100%; 
+			outline: none; box-shadow: none;
+			border: none;
+			&::-webkit-placeholder{
+				font-size: 14px; color: #666;
+				// http://xzqh.mca.gov.cn/map
+			}
+			&:-webkit-autofill{
+				box-shadow: 0 0 0px 1000px white inset; 
+			} 
+		}
+		.clear{
+			position: absolute; right: 0; 
+			display: flex; width: 0.5rem; height: 0.5rem;
+			justify-content: center; cursor: pointer;
+      align-items: flex-end;  
+			font-size: 30px; color: #ccc; 
+		}	
+	}
+	.find-btn{
+		width: 88%; height: 1rem; line-height: 1rem;
+		display: block; border-radius: 0.5rem;  
+		color: #409eff; font-size: 0.34rem; 
+		border: 0.01rem solid #409eff;
+		background: none;  
+		margin: 0 auto;  box-shadow: none; 
+		outline: none; cursor: pointer;
+		&.highlight{
+			background: #e73d77;
+		}
+	}
+}

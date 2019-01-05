@@ -1,0 +1,59 @@
+
+$l_height: 50px;
+$header_hei: 104px; //顶部导航高度
+$aside_width: 324px; //侧栏菜单宽度
+$imgsrc: '../../static/images'; //背景图片路径
+
+$pointer: 'cursor: pointer';
+
+.page-content{
+	height: 100%; overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	p{
+		line-height: $l_height;
+		font-size: 16px;
+	}
+}
+.top-wrapper{
+	background: #333;
+	height: 50px;
+	.close{
+		margin-left: 2.5%; float: left; width: 16px;
+		position: relative; height: 50px;
+		.close-img{
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+			height: 16px;
+			width: 16px; 
+			border-radius: 50%;
+			background: url('#{$imgsrc}/close.png') no-repeat;
+			background-size: cover;
+		} 
+	}
+	.logoimg{
+		width: 35px; line-height: 50px; height: 50px;
+		margin-left: 2.5%; margin-right: 2.5%;
+		vertical-align: middle; float: left;
+		position: relative;
+		img{ 
+			position: absolute;
+			width: 35px;
+			left: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
+	}
+	.download-text{
+		float: left; height: 50px;
+		font-size: 14px;
+		display: flex; justify-content: center;
+		align-items: center; color: #fff;
+	}
+	.btn-open{
+		background: #cd2525; float: right; font-size: 16px;
+		height: 50px; line-height: 50px; cursor: pointer;
+		color: #fff; width: 28%; text-align: center;
+	}
+}

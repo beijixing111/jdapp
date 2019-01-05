@@ -5,7 +5,7 @@ class Car extends Component {
   render() {
     return (
       <div>
-          Car 
+        Car 
       </div>
     )
   }
