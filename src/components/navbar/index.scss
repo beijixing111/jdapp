@@ -1,28 +1,33 @@
 
-$navbar_h: 50px;
+$navbar_h: 0.80rem;
 
 .navbar{
 	height: $navbar_h; line-height: $navbar_h;
 	border-bottom: 0.01rem solid #e2e2e2;
 	display: flex; background: #fff;
-	position: fixed; top: 0; width: 100%;
-	z-index: 99;
+	position: fixed; top: 0; 
+	width: 100%; max-width: 640px; z-index: 99;
 	.left{
 		display: flex; justify-content: flex-start; align-items: center;
-		color: #333; font-size: 0.32rem; width: 25%; float: left; 
-		padding-left: 8px; box-sizing: border-box;
+		color: #333; font-size: 0.3rem; width: 20%; float: left; 
+		padding-left: 0.05rem; box-sizing: border-box;
 		i{
-			font-weight: bold; margin: 0 -5px 0 0;
+			margin: 0 -5px 0 0; font-size: 0.6rem;
+			display: flex; 
 		}
 	}
 	.center{
-		display: block; text-align: center; 
-		color: #333; font-size: 0.36rem; width: 50%; overflow: hidden; 
-    text-overflow: ellipsis; white-space: nowrap;
+		display: flex; text-align: center; flex: 1;
+		color: #333; font-size: 0.34rem; 
+		overflow: hidden; text-overflow: ellipsis; 
+		white-space: nowrap;justify-content: center;
 	}
 	.right{
 		display: flex; justify-content: flex-end; align-items: center;
-		color: #333; font-size: 0.32rem; width: 25%; float: right;
+		color: #333; font-size: 0.3rem; width: 20%; float: right;
 		box-sizing: border-box; padding-right: 8px;
+		i{
+			width: 0.44rem; text-align: right; font-size: 0.4rem;
+		}
 	}
 }

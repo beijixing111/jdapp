@@ -1,0 +1,315 @@
+$imgsrc: '../../static/images'; //背景图片路径
+
+.car-container{
+	height: 100%; padding-top: 0.8rem; box-sizing: border-box;
+} 
+
+.car-content{
+	height: 100%; overflow-x: hidden; box-sizing: border-box;
+	overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.empty-container{
+	padding: 0.5rem 0.3rem; text-align: center;
+	.empty-logo{
+		width: 2rem; height: 2rem; font-size: 0.3rem;
+		text-align: center; margin: 0 auto 0.15rem;
+		img{
+			width: 100%; display: inline-block;
+		}
+	} 
+	.without-tip{
+		font-size: 0.3rem; color: #888; padding: 0.15rem 0;
+		text-align: center; line-height: 1; margin-bottom: 0.1rem;
+	}
+	a{
+		display: block; width: 1.4rem; padding: 0.15rem 0.1rem; 
+		font-size: 0.3rem; border-radius: 0.1rem; margin: 0 auto;
+		border: 0.01rem solid #e93b3d; color: #e93b3d; 
+	}
+}
+
+.bottom-nav{
+	position: fixed; bottom: 1rem; z-index: 98; 
+	width: 100%; height: 1rem; background: #fff;
+	display: flex; justify-content: space-between;
+	align-items: center;
+	border-top: 0.01rem solid #e5e5e5;
+	.all-check{
+		width: 0.85rem; height: 1rem; flex: none;
+		font-size: 0.3rem; display: flex; 
+		position: relative;
+		.active-icon{
+			width: 100%; height: 0.32rem; top: 0.15rem;
+			border-radius: 50%; margin-bottom: 0.1rem;
+		}
+		span{
+			font-size: 0.26rem; color: #666; display: block;
+			margin-top: 0.55rem; text-align: center;
+			width: 100%;
+		} 
+	}
+	.clearcar{
+		display: block; position: absolute;
+		left: 0.86rem; top: 0; width: 0.9rem; 
+		padding: 0 .05rem; font-size: 0.28rem;
+		color: #888; height: 1rem; line-height: 1rem;
+		text-align: center;
+	}
+	.total-box{
+		display: flex; flex: none; height: 100%; 
+		justify-content: flex-end; align-items: center;
+		.total-wrapper{
+			display: flex; flex: none; font-size: 0.3rem;
+			flex-direction: column; justify-content: flex-end; 
+			align-items: center;
+			p{
+				font-size: 0.24rem; text-align: right;
+				padding: 0.05rem 0; width: 100%; 
+				color: #999;
+				&.total-ji{
+					font-size: 0.28rem; color:#e93b3d; font-weight: bold;
+					b{
+						color: #333;
+					}
+				} 
+			}
+		}
+		.go-pay{
+			display: flex; height: 100%; align-items: center;
+			justify-content: center; width: 2.3rem;
+			font-size: 0.32rem; margin-left: 0.1rem; 
+			background: #e4393c; color: #fff; 
+		}
+	}
+}
+
+.goods-wrapper{
+	.goods-item{
+		background: #fff;
+		.shop-line{
+			border-top: 0.01rem solid #e2e2e2; 
+			height: 0.6rem; line-height: 0.6rem;
+			border-bottom: 0.01rem solid #e2e2e2; 
+			position: relative; padding: 0 0.15rem 0 0.8rem;
+			overflow: hidden;
+			.shop-active{ 
+				width: 0.85rem; height: 0.6rem;  
+				&:after{
+					top:50%; transform: translate(-50%, -50%);
+				}
+			}
+			.shop-name{
+				float: left; width: 50%; 
+				font-size: 0.3rem; 
+				i, .name-text{
+					font-size: 0.28rem; 
+				}
+				i{ margin-right: 0.1rem;}
+			}
+			.tip-txt{
+				float: right; width: 50%; text-align: right;
+				p{
+					font-size: 0.24rem; color: #888; 
+					span{
+						padding: 0 0.05rem;
+					}
+					a{
+						margin-left: 0.2rem;
+					}
+				}
+			}
+		}
+		
+		.goods-info{
+			position: relative; padding: 0.1rem 0;
+			border-bottom: 0.01rem dashed #e2e2e2; 
+			.goods-img{
+				position: absolute; left: 0.75rem; top: 0.2rem;
+				width: 1.25rem; height: 1.25rem;
+				img{
+					width: 1.25rem; height: 1.25rem;
+				}
+			}
+			.box-info{
+				padding: 0.1rem 0 0 2.1rem; 
+				.name{
+					font-size: 0.26rem; color: #999;
+					padding: 0.1rem 0.1rem;
+					.mark{
+						border-radius: 2px; font-size: 0.22rem; 
+						color: #4bd14b; border: 0.01rem solid #4bd14b;
+						margin: 0 0.1rem; padding: 0 0.1rem;
+					}
+				}
+				.iddist{
+					font-size: 0.28rem; color: #333; 
+					padding: 0.1rem 0.15rem; line-height: 1.4;
+				}
+				.goods-line{
+					padding: 0.1rem 0.15rem; display: flex;
+					justify-content: space-between; align-items: center;
+					.price{
+						font-size: 0.26rem; color: #333; display: flex; 
+						width: 2rem;
+					}
+					.num-more{
+						display: flex; flex: none; justify-content: flex-end;
+						background: #f7f7f7; 
+					}
+					.minus,.plus{
+						width: 30px; height: 30px; position: relative;
+						&:after{
+							display: block; content: '';
+							width: 16px; height: 2px; background: #aaa;
+							position: absolute; left: 50%;
+							top: 50%; margin-top: -1px;
+							margin-left: -8px;
+						}
+					}
+					.minus{ 
+						&.disabled{
+							opacity: 0.3;
+						}
+					}
+					.plus{
+						&:before{
+							display: block; content: '';
+							width: 2px; height: 16px;
+							background: #aaa;
+							position: absolute; left: 50%;
+							top: 50%; margin-top: -8px;
+							margin-left: -1px;
+						}
+						&.disabled{
+							opacity: 0.3;
+						}
+					}
+					.input-wrap{
+						width: 0.8rem; height: 30px; font-size: 30px;
+						border-left: 1px solid #fff; 
+						border-right: 1px solid #fff; 
+						input{
+							background: none; width: 100%; outline: none;
+							display: flex; font-size: 0.26rem; color: #666;
+							justify-content: center; align-items: center;
+							box-shadow: none; border: none; 
+							text-align: center; height: 30px;
+							line-height: 18px; padding: 0 0.05rem;
+						}
+					}
+				}
+				.sub-line{
+					text-align: right; padding: 0.1rem 0.15rem;
+					font-size: 0.3rem;
+					.m_action_item{
+						font-size: 0.26rem; color: #666;
+					}
+					.del{
+						font-size: 0.26rem; color: #666; margin-left: 0.2rem;
+					}
+				}
+			}
+		}
+
+	}
+}
+
+.select{
+	position: absolute; left: 0; top: 0;
+	width: 0.85rem; height: 100%; display: block;
+	&:after{
+		display: block; content: ''; 
+		width: 20px; height: 20px;
+		position: absolute; left: 50%; top: 30%;
+		transform: translate(-50%, -30%); 
+		border-radius: 50%; background-color: #fff;
+		background-image: url('#{$imgsrc}/default.png');
+		background-size: cover;
+	}
+	&.active:after{ 
+		background-image: url('#{$imgsrc}/actived.png');
+		background-size: cover;
+	}
+}
+
+.tuijian-content{
+	.title{
+		position: relative; height: 0.6rem;  display: flex;
+		text-align: center; z-index: 1;
+		justify-content: center; align-items: center;
+		&:after{
+			position: absolute; left: 0.1rem; right: 0.1rem; top: 50%;
+			height: 1px; z-index: 1; display: block; content: '';
+			background: #ccc; 
+		};
+		span{
+			font-size: 12px; color: #999; position: relative; z-index: 2;
+			padding: 0 0.3rem;display: inline-block;
+			vertical-align: middle; background: #f7f7f7;
+			&:before{
+				display: block; content: ''; width: 4px; height: 4px; 
+				background-color: #ccc; position: absolute; left: 0;  
+				top: 50%; margin-top: -2px; transform: rotate(45deg);
+			} 
+			&:after{
+				display: block; content: ''; width: 4px; height: 4px; 
+				background-color: #ccc; position: absolute; right: 0; 
+				top: 50%; margin-top: -2px; transform: rotate(45deg);
+			}
+		} 
+	}	
+	.tuijian-list{
+		width: 100%; background: #fff;
+		ul{
+			display: flex; flex-wrap: wrap; border-top: 0.01rem solid #f2f2f2;
+			li{
+				display: flex; width: 50%; border-right: 0.01rem solid #f2f2f2;
+				border-bottom: 0.01rem solid #f2f2f2;
+				height: 5rem; padding: 0.15rem 0.15rem 0; 
+				box-sizing: border-box;
+				&:nth-child(2n+2){
+					border-right: 0;
+				}
+				a{ display: block; width: 100%; height: 100%; }
+				.goods-pic{
+					width: 3.2rem; height: 3.2rem; text-align: center;
+					margin: 0 auto; overflow: hidden;
+					img{
+						display: inline-block; width: 100%;
+					}
+				}
+				.desc{
+					font-size: 0.28rem; color: #333; line-height: 1.4;
+					height: 0.72rem; margin: 0.2rem 0;
+					overflow: hidden; text-overflow: ellipsis;
+					word-break: break-all; display: -webkit-box;
+					-webkit-line-clamp: 2; -webkit-box-orient: vertical;
+				}
+				.price-line{
+					font-size: 0.3rem; 
+					span{
+						display: inline-block;
+					}
+					.price{
+						font-size: 0.28rem; color: #f00;
+						margin-right: 0.1rem;
+						em{
+							font-size: 0.32rem;
+						}
+					}
+					.mark{
+						font-size: 0.24rem; border: 0.01rem solid #f00;
+						padding: 0.02rem 0.1rem; margin-right: 0.1rem;
+					}
+					.plus{
+						font-size: 0.24rem; color: #333;
+						.plus-mark{
+							margin: 0 2px; background: #333; color: yellow;
+							font-size: 0.2rem; padding: 0 0.05rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}

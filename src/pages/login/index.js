@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar';
-import Util from '../../util';
+import Toast from '../../components/toast/';
+import Util, { check } from '../../util';
 import './index.scss';
 
 class Login extends Component {
@@ -14,6 +15,7 @@ class Login extends Component {
       password: '',
       passwordTip: false,
       highlight: false,
+      showToast: false,
     };
   }
   shouldComponentUpdate(newProps, newState) {
@@ -35,16 +37,23 @@ class Login extends Component {
     });
     this.isHighLight(this.state.account, password);
   }
-  isHighLight(a, p) {
-    console.log(a.length, p.length);
 
+  handlePwdFocus = () => {
+    let body = document.querySelector('.App');
+    body.scrollTop = body.scrollHeight;
+  }
+  handlePwdBlur = () => {
+
+    // IOS键盘收起后，页面滚动对应位置
+    window.scroll(0, 0);
+  }
+
+  isHighLight(a, p) {
     if (a.length > 0 && p.length > 0) {
-      console.log(a, p);
       this.setState({
         highlight: true
       });
     } else {
-      console.log(1223);
       this.setState({
         highlight: false
       });
@@ -54,17 +63,25 @@ class Login extends Component {
     let account = this.state.account;
     let password = this.state.password;
 
-    console.log(account, password);
     if (!account && !password) {
-      return;
+      return; //Toast.info('请先填写信息哦！');
     } else {
+      if (!check.checkPhone(account)) {
+        return Toast.info('手机号码格式不正确！');
+      }
+      if (!password || password.length < 6) {
+        return Toast.info('密码不能为空且长度不能小于6位！');
+      }
       Util.setSessionItem('loginState', true);
       this.props.history.push('/user');
     }
   }
+  componentWillUnmount() {
+
+  }
   render() {
     return (
-      <div>
+      <div className=" ">
       	<Navbar left={<Link to="/home">返回</Link>} center='京东登录' />
       	<div className="login-content">
 					<div className="login-item">
@@ -81,6 +98,8 @@ class Login extends Component {
 						<input type="password" placeholder="请输入密码" 
 							value={this.state.password} autoComplete="new-pwd"
 							onChange={this.handlePassword}
+              onFocus={this.handlePwdFocus}
+              onBlur={this.handlePwdBlur}
 						/>
 						<i className="clear rig" 
 							style={{"display": this.state.passwordTip ? 'flex' : 'none'}}
@@ -90,6 +109,7 @@ class Login extends Component {
 					</div>
 					<button type="button" className={this.state.highlight? 'login-btn highlight' : 'login-btn'} onClick={this.handleSubmit}>登&nbsp;&nbsp;录</button>
       	</div>
+      	  
       </div>
     );
   }

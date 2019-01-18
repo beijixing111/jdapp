@@ -2,40 +2,32 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Tabbar from '../../components/tabbar';
 import Util from '../../util';
+import Toptip from './toptip';
+import SliderArt from './slider';
+import Submenu from './submenu';
+import Jdnotice from './jdnotice';
+import Floor from './floor';
+import portImg from '../../static/images/xuanchuan_01.png';
+
 
 import "./home.scss";
-import Logo from '../../static/images/logo.png';
 
-function checkWebp() {
-  try {
-    return (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0);
-  } catch (err) {
-    return false;
-  }
-}
-
-
-const Toptip = (props) => {
-  return (
-    <div className="top-wrapper">
-      <div className="close" onClick={props.closeToptip}>
-        <div className="close-img"></div>
-      </div>
-      <div className="logoimg">
-        <img src={Logo} alt="logo"/>
-      </div>
-      <div className="download-text">打开京东App,购物更轻松</div>
-      <div className="btn-open">立即打开</div>
+const Searchwrap = () => (
+  <div className="search-content">
+    <div className="res-list">
+      搜索结果展示
     </div>
-  );
-}
+  </div>
+);
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      downloadTip: true
-
+      downloadTip: true,
+      searchVal: '',
+      headerTop: 0,
+      focused: false
     };
   }
 
@@ -45,14 +37,38 @@ class Home extends Component {
       downloadTip: false
     });
   }
+  handleSearchChange = (e) => {
+    this.setState({
+      searchVal: e.target.value
+    });
+  }
 
   componentDidMount() {
     this.bindEvents();
+    this.headerTop = document.querySelector('.header').offsetHeight;
+    if (this.state.downloadTip) {
+      this.setState({
+        headerTop: this.headerTop
+      });
+    }
   }
-  scrollTypeMethod() {
 
-
-
+  handleFocus = () => {
+    if (this.state.focused) {
+      return;
+    }
+    this.setState({
+      downloadTip: false,
+      headerTop: 0,
+      focused: true
+    });
+  }
+  handleClickBack = () => {
+    this.setState({
+      downloadTip: true,
+      headerTop: this.headerTop,
+      focused: false
+    });
   }
 
   bindEvents() {
@@ -64,11 +80,19 @@ class Home extends Component {
     }
     pageScroll.addEventListener("scroll", () => {
       var isshow = true;
+      if (this.state.focused) {
+        return false;
+      }
+      var headerTop;
       if (pageScroll.scrollTop > 20) {
         isshow = !isshow;
+        headerTop = 0;
+      } else {
+        headerTop = this.headerTop;
       }
       this.setState({
-        downloadTip: isshow
+        downloadTip: isshow,
+        headerTop
       });
       Util.setSessionItem('home_scrollTop', pageScroll.scrollTop);
     });
@@ -80,29 +104,57 @@ class Home extends Component {
   }
 
   render() {
+    // console.log(this.props);
     return (
-      <div className="page-content">
+      <React.Fragment>
         {this.state.downloadTip ? <Toptip closeToptip={() => this.handleCloseToptip()} />: null }
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p> 
-        <p>Home</p>
-        <p><Link to="/detail" style={{color: "blue"}}>Detail</Link></p> 
-        <p>Home</p> 
-        <p>Home</p> 
+        <div className={this.state.downloadTip? 'header' : 'header after'}
+            style={{top: this.state.downloadTip ? this.state.headerTop : 0}} 
+          >
+          <div className="fenlei">
+            { this.state.focused ? 
+              <i className="iconfont icon-fanhui" onClick={this.handleClickBack}></i> :
+              <Link to="/category/1" className="iconfont icon-fenlei1"></Link>
+            }
+          </div>
+          <div className="search-container">
+            <div className="search-box">
+              <i className="jd-icon-logo">JD</i>
+              <i className="iconfont icon-sousuo-copy jd-icon-search"></i>
+              <div className="jd-header-input">
+                <input type="text" maxLength="20" 
+                  name="keyword" autoComplete="off"
+                  value={this.state.searchVal}
+                  onFocus={this.handleFocus}
+                  placeholder='海澜之家，男人的衣柜'
+                  onChange={this.handleSearchChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="login-btn">
+            { this.state.focused ? 
+              <button type="button" className="btn">搜索</button> :
+              <Link className="login-text" to="/login">登录</Link>
+            }
+          </div>
+        </div>
         
-      </div>
+        {this.state.focused ? <Searchwrap /> : null}
+        <div className="page-content"> 
+          <div className="huandengpic">
+            <SliderArt />
+          </div>
+          <div className="jingpin">
+            <img src={portImg} alt="" />
+          </div>
+          {/*子导航栏*/}
+          <Submenu />
+          <Jdnotice />
+          <Floor />  
+          <Floor />  
+        </div>
+      </React.Fragment>
     )
   }
 }

@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import Tabbar from '../../components/tabbar';
+import React, { Component } from 'react';
 import Util from '../../util';
 import Navbar from '../../components/navbar';
 import './index.scss';

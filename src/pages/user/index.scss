@@ -1,11 +1,111 @@
 
+$navbar_h: 0.80rem;
+
+.navbar{
+	height: $navbar_h; line-height: $navbar_h;
+	border-bottom: 0.01rem solid #e2e2e2;
+	display: flex; background: #fff;
+	position: fixed; top: 0; 
+	width: 100%; max-width: 640px; z-index: 99;
+	.left{
+		display: flex; width: 20%; float: left; box-sizing: border-box;
+	}
+	.center{
+		display: flex; text-align: center; flex: 1;
+		color: #333; font-size: 0.34rem; 
+		overflow: hidden; text-overflow: ellipsis; 
+		white-space: nowrap;justify-content: center;
+	}
+	.right{
+		display: flex; justify-content: flex-end; align-items: center;
+		color: #333; font-size: 0.28rem; width: 20%; float: right;
+		box-sizing: border-box; padding-right: 8px;
+		i{
+			width: 0.44rem; text-align: right; font-size: 0.4rem;
+		}
+		a.iconfont{
+			padding: 0 0.1rem 0 0.25rem; font-size: 0.32rem;
+			position: relative;
+		}
+		.num{
+			font-size: 0.2rem; position: absolute; 
+			right: -0.1rem; top:0.1rem; height: 0.26rem;
+			border-radius: 0.12rem; color: #fff;
+			width: 0.34rem;background: red;
+			line-height: 1.38;  text-align: center;
+		}
+	}
+}
 
 .mine-container{
-	padding-top: 1rem;
-	p{
-		text-align: center;
-		font-size: 20px;
-		color: #353535;
-		padding: 20px 0;
+	height: 100%;  
+}
+.mine-content{
+	height: 100%; overflow-x: hidden; box-sizing: border-box;
+	padding-top: 0.8rem; overflow-y: auto; -webkit-overflow-scrolling: touch;
+	.header-con{
+		padding: 0.1rem; background: #fff;
+		.topinfo{
+			box-shadow: 0 2px 4px rgba(228,57,60,.4);
+			border-radius: 5px; position: relative;
+			background: linear-gradient(90deg, #eb3c3c, #ff7459);
+			height: 2.4rem;
+			.headimg{
+				position: absolute; left: 0.2rem; top: 50%; transform: translateY(-50%);
+				width: 1.2rem; height: 1.2rem;
+				.avatar{
+					font-size: 0.28rem; color: #fff; display: block; 
+					border: 0.01rem solid #fff; width: 100%; height: 100%; 
+					box-shadow: 0 2px 10px rgba(0,0,0,.15); 
+					border-radius: 50%; overflow: hidden; 
+					img{
+						width: 100%;  
+					}
+				}
+			}
+			.userinfo{
+				position: absolute; left: 1.55rem; top: 0;
+				padding: 0.6rem 0;
+				.mobile{
+					font-size: 0.28rem; color: #fff; margin-bottom: 0.18rem;
+				}
+				.username{
+					font-size: 0.24rem; color: #f3dada; margin-bottom: 0.18rem;
+				}
+				.lab{ 
+					font-size: 0.28rem; display: flex; justify-content: flex-start;
+					.link-item{
+						padding: 0 0.15rem; display: flex;
+						margin-right: 0.2rem; background: #c8483f;
+						color: #fff; border-radius: 10px; height: 16px; 
+						line-height: 12px; font-size: 0.24rem; 
+						align-items: center;
+						i{ 
+							transform: rotate(90deg); display: inline-block;
+						}
+					}
+				}
+			}
+		}
 	}
+	
+	//订单栏
+	.order-menu{
+		height: 1.44rem; margin: 0.2rem 0; 
+		background: #fff; display: flex; 
+		.line-box{
+			height: 1.44rem; display: flex; justify-content: center;
+			align-items: center; flex: 1; flex-wrap: nowrap;
+			flex-direction: column;
+			.icon{
+				display: flex; width: 0.6rem; height: 0.6rem; margin: 0 auto 0.15rem;
+				border: 1px solid #ccc;
+			}
+			.text{
+				display: flex; justify-content: center; align-items: center;
+				font-size: 0.28rem; color: #666;
+			}
+		} 
+	}
+
 }

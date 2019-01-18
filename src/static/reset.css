@@ -57,3 +57,20 @@ body{
 	-webkit-tap-highlight-color: rgba(0, 0, 0, transparent); 
   -webkit-tap-highlight-color: transparent;
 }
+
+input,textarea{
+	// -webkit-appearance: none; 
+	outline: none; border: none;
+	&::-webkit-input-placeholder {
+		color: @placeholder; font-size: 26/@em;
+	}
+}
+input.empty{
+	&::-webkit-input-placeholder {
+		color: @baseRedCol !important;
+	}
+	&::-moz-placeholder { 
+		color:  @baseRedCol !important;
+		opacity: 1;
+	}
+}

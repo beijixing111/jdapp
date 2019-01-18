@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/navbar';
-import Util from '../../util';
+// import Util from '../../util';
+import Toast from '../../components/toast';
 import './index.scss';
 
 class Findpw extends Component {
@@ -11,7 +12,11 @@ class Findpw extends Component {
       focused: false
     };
   }
-
+  handleSubmit = () => {
+    if (!this.state.account) {
+      Toast.info('请先填写账号！');
+    }
+  }
 
   render() {
     return (
@@ -34,7 +39,7 @@ class Findpw extends Component {
 							onClick={() => this.setState({account: ''})}
 						>×</i> 
 					</div>
-					<button type="button" className="find-btn" onClick={() => {}}>点击完成验证</button>
+					<button type="button" className="find-btn" onClick={this.handleSubmit}>点击完成验证</button>
 					
 				</div>
 			</div>

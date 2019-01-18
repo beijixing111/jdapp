@@ -1,0 +1,23 @@
+
+
+$imgsrc: '../../static/images'; //背景图片路径
+
+.notfound-container{
+	padding: 2rem 0.2rem;  
+	.notfound-img{
+		width: 4.36rem; 
+		height: 3.3rem; 
+		margin: 0 auto;
+		background: url('#{$imgsrc}/notfound.png') no-repeat;
+		background-size: cover;
+	}
+	p{
+		padding: 0.3rem;
+		font-size: 0.28rem;
+		color: #999;
+		text-align: center;
+		a{ 
+			color: #2196f3; font-size: 0.32rem;
+		}
+	}
+}

@@ -18,11 +18,11 @@ class Navbar extends Component {
     return (
       <div className="navbar">
 				<div className="left" onClick={() => this.handlebackClick(props)}>
-					{props.left != ' ' ? <i className="iconfont icon-fanhui"></i> : null }
+					{props.left !== ' ' ? <i className="iconfont icon-fanhui"></i> : null }
 					{!props.left ? '返回' : props.left }
 				</div>
 				<div className="center">{props.center}</div>
-				<div className="right">{props.right ? props.right : null}</div>
+				<div className="right" dangerouslySetInnerHTML={{__html: props.right ? props.right : null}}></div>
 			</div>
     );
   }

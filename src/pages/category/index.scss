@@ -1,0 +1,91 @@
+
+$nav_h: 0.8rem;
+.category-container{
+	padding: $nav_h 0 0; height: 100%; box-sizing: border-box;
+	.search-wrapper{
+		position: fixed; top: 0; z-index: 99;
+		width: 100%; height: $nav_h;
+		background: #fff;
+		border-bottom: 0.01rem solid #e2e2e2;
+		display: flex; justify-content: center;
+		align-items: center;
+		.search-box{
+			width: 78%; height: 0.66rem; line-height: 0.66rem;
+			text-align: left; background: #f7f7f7;
+			border-radius: 0.33rem; display: flex;
+			align-items: center; overflow: hidden; 
+			.iconfont{
+				width: 0.4rem; height: 0.66rem; 
+				text-align: center; color: #666;
+				font-size: 0.38rem; display: flex;
+				vertical-align: top;
+				flex: none; margin: 0 0.1rem 0 0.2rem;
+			}
+			.search{
+				display: flex;  flex: 1; font-size: 0.28rem;
+				outline: none; box-shadow: none;
+				border: none; background: none;
+			}
+		}
+	}
+	.category-content{
+		height: 100%; display: flex; 
+		flex-direction: row; justify-content: flex-start;
+		.submenu{
+			display: flex; height: 100%; width: 2rem;
+			overflow-y: scroll; -webkit-overflow-scrolling: touch;
+			background: #f8f8f8; flex: none;
+			ul {
+				width: 100%; display: flex; flex-direction: column;
+				li{
+					height: 1rem; line-height: 1rem; font-size: 0.3rem;
+					text-align: center;
+					a{
+						display: block; width: 100%; height: 100%;
+					}
+					.active{
+						background: #fff; color: #e93b3d;
+					}
+				}
+			}
+		}
+		.right-wrapper{
+			display: flex; height: 100%; width: 100%; overflow: hidden;
+			background: #fff;
+			overflow-y: scroll; -webkit-overflow-scrolling: touch;
+			.category-wrapper{
+				padding: 0 0.1rem; width: 100%;
+			}
+			.category-item{
+				.label{
+					font-size: 0.3rem; padding: 0.3rem 0.25rem;
+					display: flex; justify-content: space-between;
+					span{
+						font-size: 0.3rem; font-weight: bold;
+					}
+					em{
+						font-size: 0.24rem;
+					}
+				}
+				.wrapper-content{
+					ul{
+						display: flex; flex-direction: row; 
+						flex-wrap: wrap; 
+						li{
+							width: 30%; margin: 0 1%;
+							text-align: center; 
+							img{
+								width: 1.4rem;  
+								display: block; margin: 0 auto;
+							}
+							span{
+								display: block;
+								font-size: 0.28rem; padding: 0.2rem 0.25rem;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

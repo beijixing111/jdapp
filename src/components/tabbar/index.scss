@@ -1,10 +1,12 @@
 .tabbar{
-  height: 50px; position: fixed; 
-  bottom: 0; width: 100%; max-width: 768px;
-  border-top: 0.01rem solid #ccc; background: #fff;
+  height: 1rem; position: fixed; z-index: 99;
+  bottom: 0; width: 100%; max-width: 640px;
+  border-top: 0.01rem solid #f2f2f2; background: #fff;
+  box-shadow: 0 0 0.1rem 0.1rem rgba(0,0,0,0.05);
 }
 .tabbar-children{
-  padding-bottom: 50px; height: 100%; box-sizing: border-box;
+  padding-bottom: 1rem; height: 100%; box-sizing: border-box;
+  background: #f7f7f7;
 }
 .tabbar-content{
   display: flex; height: 100%;
@@ -14,22 +16,31 @@
   align-items: center;
   justify-content: center;
   height: 100%; 
-  flex-direction: column;
-}
-.iconfont{
-  font-size: 22px !important;
-  margin-bottom: 2px;
-}
-.tabbar-text{
-  font-size: 12px;
-}
-.active{
-  color: #f00 !important;
-}
-a{
   text-decoration: none;
   color: #333;
+  flex-direction: column;
+  position: relative;
+  &.active{
+    color: #f00 !important;
+  }
+  i{
+    position: absolute; top: 0.06rem;
+    right: 50%; font-size: 0.2rem;
+    color: #f00; width: 0.3rem;
+    height: 0.3rem; border-radius: 100%;
+    line-height: 0.3rem; text-align: center;
+    border: 0.01rem solid #f00;
+    background: #fff; margin-right: -0.4rem;
+  }
+  .iconfont{
+    font-size: 22px !important;
+    margin-bottom: 2px;
+  }
+  .tabbar-text{
+    font-size: 12px;
+  } 
 }
+
 
 /* a:hover,
 a:visited,
