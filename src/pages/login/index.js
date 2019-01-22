@@ -85,7 +85,7 @@ class Login extends Component {
       	<Navbar left={<Link to="/home">返回</Link>} center='京东登录' />
       	<div className="login-content">
 					<div className="login-item">
-						<input type="text" placeholder="用户名/邮箱/手机号码" 
+						<input type="text" placeholder="用户名 / 邮箱 / 手机号码" 
 							value={this.state.account} autoComplete="new-pwd"
 							onChange={this.handleAccount}
 						/>
@@ -108,8 +108,14 @@ class Login extends Component {
 						<Link to="/findpw" className="forget-pw">忘记密码</Link>
 					</div>
 					<button type="button" className={this.state.highlight? 'login-btn highlight' : 'login-btn'} onClick={this.handleSubmit}>登&nbsp;&nbsp;录</button>
-      	</div>
-      	  
+      	</div> 
+        <div className="test">
+          <p><a href="sms:18688886666">发短信给18888886666</a></p>
+          <p><a href="tel:186 8888 6666">打电话给188 8888 6666</a></p>
+          <p><a href="mailto:815888888@qq.com">给815888888@qq.com发邮件</a></p>
+          <p><a target="_blank" href="https://itunes.apple.com/cn/app/id1449805747?mt=8">去app store</a></p>
+        </div>
+        
       </div>
     );
   }

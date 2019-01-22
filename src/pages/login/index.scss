@@ -50,15 +50,21 @@ input{
 	.login-btn{
 		width: 88%; height: 1rem; line-height: 1rem;
 		display: block; border-radius: 0.5rem;  
-		color: #fff; font-size: 0.34rem; 
-		background: #03A9F4; 
+		color: #fff; font-size: 0.34rem; background: #03A9F4; 
 		background-image: linear-gradient(90deg,#fab3b3,#ffbcb3 73%,#ffcaba);
     box-shadow: 0 0.1rem 0.2rem 0 rgba(255,62,62,.2);
-		margin: 0 auto;
-		border: none; box-shadow: none; 
+		margin: 0 auto; border: none; 
 		outline: none; cursor: pointer;
 		&.highlight{
 			background: #e73d77;
 		}
+	}
+}
+
+.test{
+	font-size: 0.3rem; padding: 0.4rem 0; display: none;
+	p{
+		text-align: center; font-size: 0.3rem;
+		padding: 0.15rem 0;
 	}
 }

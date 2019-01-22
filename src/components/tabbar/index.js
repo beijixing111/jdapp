@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Util from '../../util';
 import './index.scss';
@@ -22,33 +23,29 @@ const tabbarArr = [{
 }];
 
 
-const Tabbar = (WrappedComponent) => class Tabbar extends Component {
+const mapState = state => ({
+  carNum: state.getIn(['car', 'carNum'])
+});
+
+
+const Tabbar = (WrappedComponent) => connect(mapState, null)(class Tabbar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      carNum: 4
-    };
+
   }
 
-  componentDidMount() {
-    let carNum = Util.getSessionItem('carNum') ? Util.getSessionItem('carNum') : this.state.carNum;
-    this.setState({
-      carNum: carNum
-    });
-  }
 
-  // itemChange = (i) => {
-  //   this.setState({
-  //     index: i
-  //   });
-  // }
+
   render() {
+    console.log(this.props);
     //const url = window.location.href;
     // <Link to={item.link} key={i} className={"tabbar-item " + (url.indexOf(item.link) > -1 ? 'active' : '')}  >
-    //               <div className={"iconfont " + item.img}></div>
-    //               <div className="tabbar-text">{item.text}</div>
-    //             </Link>
+    //  <div className={"iconfont " + item.img}></div>
+    //    <div className="tabbar-text">{item.text}</div>
+    //  </Link>
+    let status = Util.getSessionItem('loginState');
+    const CarNum = () => (status && this.props.carNum !== 0 ? <i>{this.props.carNum}</i> : null);
 
     return (
       <React.Fragment>
@@ -60,7 +57,7 @@ const Tabbar = (WrappedComponent) => class Tabbar extends Component {
             {
               tabbarArr.map((item, i) => (
                 <NavLink to={item.link} key={i} className="tabbar-item" activeClassName="active" >
-                  {(item.link == '/car' && this.state.carNum != 0) ? <i>{this.state.carNum}</i> : null}
+                  {item.link == '/car' ? <CarNum /> : null}
                   <div className={"iconfont " + item.img}></div>
                   <div className="tabbar-text">{item.text}</div>
                 </NavLink>
@@ -71,6 +68,6 @@ const Tabbar = (WrappedComponent) => class Tabbar extends Component {
       </React.Fragment>
     )
   }
-}
+});
 
 export default Tabbar;

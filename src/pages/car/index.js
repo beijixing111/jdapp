@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { actionCreators } from './store';
+
 import Navbar from '../../components/navbar';
 import Tabbar from '../../components/tabbar';
 import { Link } from 'react-router-dom';
@@ -30,8 +33,8 @@ class Car extends Component {
 
     return (
       <div className="car-container">
-        <div className="car-content" style={{paddingBottom: '1rem'}}>
-          <Navbar left=" " center="购物车"  />
+        <Navbar left=" " center="购物车"  />
+        <div className="car-content" style={{paddingBottom: '1rem'}}> 
           {this.carComponent()}
           <Tuijian />
         </div> 
@@ -40,4 +43,5 @@ class Car extends Component {
   }
 }
 
-export default Tabbar(Car);
+
+export default Tabbar(connect(null, null)(Car));
