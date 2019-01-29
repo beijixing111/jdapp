@@ -1,5 +1,5 @@
 .tabbar{
-  height: 1rem; position: fixed; z-index: 99;
+  height: 1rem; max-height: 50px; position: fixed; z-index: 99;
   bottom: 0; width: 100%; max-width: 640px;
   border-top: 0.01rem solid #f2f2f2; background: #fff;
   box-shadow: 0 0 0.1rem 0.1rem rgba(0,0,0,0.05);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Tabbar from '../../components/tabbar';
 import Util from '../../util';
 import Toptip from './toptip';
@@ -105,6 +106,7 @@ class Home extends Component {
 
   render() {
     // console.log(this.props);
+    const { loginStatus } = this.props;
     return (
       <React.Fragment>
         {this.state.downloadTip ? <Toptip closeToptip={() => this.handleCloseToptip()} />: null }
@@ -114,7 +116,7 @@ class Home extends Component {
           <div className="fenlei">
             { this.state.focused ? 
               <i className="iconfont icon-fanhui" onClick={this.handleClickBack}></i> :
-              <Link to="/category/1" className="iconfont icon-fenlei1"></Link>
+              <Link to="/category" className="iconfont icon-fenlei1"></Link>
             }
           </div>
           <div className="search-container">
@@ -135,7 +137,12 @@ class Home extends Component {
           <div className="login-btn">
             { this.state.focused ? 
               <button type="button" className="btn">搜索</button> :
-              <Link className="login-text" to="/login">登录</Link>
+              ( !loginStatus ? 
+                <Link className="login-text" to="/login">登录</Link> :
+                <Link className="login-text" to="/user" >
+                  <i className="iconfont icon-yonghu" style={{fontSize: "0.34rem"}}></i>
+                </Link> 
+              )
             }
           </div>
         </div>
@@ -159,4 +166,8 @@ class Home extends Component {
   }
 }
 
-export default Tabbar(Home);
+const mapState = state => ({
+  loginStatus: state.getIn(['login', 'loginStatus'])
+});
+
+export default Tabbar(connect(mapState, null)(Home));

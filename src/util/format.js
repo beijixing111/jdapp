@@ -36,6 +36,7 @@ const formatTime = (date, formatStr) => {
 const fromatToFixed = (n, x) => {
   if (n === 0) return n;
   x = !!x ? x : 2;
+  console.log(n);
   n = !!Number(n) ? Number(n) : false;
   if (!n) {
     console.log("参数n传入错误，请检查！");

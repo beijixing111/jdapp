@@ -8,17 +8,23 @@ import submenu from './submenu';
 // 右侧内容
 import ChancelCont from './chancelcont';
 
-const Submenu = () => (
-  <ul>
-		{submenu.map((item, i) => (
-			<li key={item.id}>
-				<NavLink activeClassName="active" to={`/category/${item.id}`}>{item.title}</NavLink>
-			</li>
-		))}
-	</ul>
-);
 
 class Category extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      chancelId: 1
+    }
+  }
+
+  handleSwitchCategory(id) {
+    this.setState({
+      chancelId: id
+    });
+
+  }
+
   render() {
     return (
       <div className="category-container">
@@ -35,11 +41,20 @@ class Category extends Component {
 				</div>
       	<div className="category-content">
 					<div className="submenu">
-						<Submenu />
+						<ul>
+							{submenu.map((item, i) => (
+								<li key={item.id}>
+									<a href="javascript:void(0);" 
+										className={this.state.chancelId == item.id ? 'active' : ''}  
+										onClick={() => this.handleSwitchCategory(item.id)}
+										>{item.title}</a>
+								</li>
+							))}
+						</ul>
 					</div>
 					<div className="right-wrapper">
-						{/*{ !this.props.match ? <ChancelCont /> : this.props.children}*/}
-						{this.props.children}
+						{/*{this.props.children}*/}
+						<ChancelCont chancelId={this.state.chancelId} /> 
 					</div>
       	</div>
       </div>

@@ -57,7 +57,7 @@ class Submenu extends Component {
 				<ul className="wrapper">
 	      	{submenu.map((item) => (
 						<li key={item.id}>
-							<Link to="/">
+							<Link to="/submenu">
 								<div className="imgbox">
 									<img src={item.imgsrc} alt="子菜单"/>
 								</div>

@@ -68,3 +68,21 @@ input{
 		padding: 0.15rem 0;
 	}
 }
+
+#layer_down{
+  position: fixed; left: 0;top: 0;bottom: 0;right: 0; z-index: 9999999;
+  background: #414141;color: #fff; padding-top: 120px; display: none;
+}
+#layer_down .pointer{
+  color: #fff; font-size: 40px; position: absolute; right: 10px; top: 60px; 
+  width: 50px; height: 50px; text-align: center;
+}
+#layer_down p{
+  color: #fff;font-size: 16px;text-align: right;padding: 15px 20px;
+}
+#layer_down p i{
+  display: inline-block; vertical-align: 3px; margin-right: 5px; 
+  width: 18px; height: 18px;border-radius: 50%; 
+  text-align: center; background: #f95959; font-style: normal;
+  line-height: 16px; font-size: 12px; color: #fff;
+}

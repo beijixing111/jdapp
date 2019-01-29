@@ -3,13 +3,14 @@ import './index.scss';
 
 class Navbar extends Component {
 
-  handlebackClick(props) {
-    if (props.backClick) {
-      return props.backClick();
-    } else if (props.history) {
-      props.history.goBack();
+  handlebackClick() {
+    if (this.props.backClick) {
+      return this.props.backClick();
+    }
+    if (this.props.history.length > 1) {
+      return this.props.history.goBack();
     } else {
-      return;
+      return this.props.history.push('/');
     }
   }
 
@@ -17,7 +18,7 @@ class Navbar extends Component {
     const props = this.props;
     return (
       <div className="navbar">
-				<div className="left" onClick={() => this.handlebackClick(props)}>
+				<div className="left" onClick={() => this.handlebackClick()}>
 					{props.left !== ' ' ? <i className="iconfont icon-fanhui"></i> : null }
 					{!props.left ? '返回' : props.left }
 				</div>
@@ -26,8 +27,6 @@ class Navbar extends Component {
 			</div>
     );
   }
-
 }
-
 
 export default Navbar;

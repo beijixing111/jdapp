@@ -21,7 +21,7 @@ class Findpw extends Component {
   render() {
     return (
       <div>
-				<Navbar backClick={ () => this.props.history.goBack()} left='返回' center='忘记密码' />
+				<Navbar backClick={ () => this.props.history.goBack()} left='返回' center='忘记密码' {...this.props} />
 				<div className="findpw-container">
 					<div className={this.state.focused ? 'findpw-item focused' : 'findpw-item'}>
 						<label htmlFor="account" className="label">账号</label>

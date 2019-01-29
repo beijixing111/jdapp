@@ -24,7 +24,9 @@ const tabbarArr = [{
 
 
 const mapState = state => ({
-  carNum: state.getIn(['car', 'carNum'])
+  carNum: state.getIn(['car', 'carNum']),
+  hideTabbar: state.getIn(['car', 'hideTabbar']),
+  loginStatus: state.getIn(['login', 'loginStatus'])
 });
 
 
@@ -35,8 +37,6 @@ const Tabbar = (WrappedComponent) => connect(mapState, null)(class Tabbar extend
 
   }
 
-
-
   render() {
     console.log(this.props);
     //const url = window.location.href;
@@ -44,22 +44,22 @@ const Tabbar = (WrappedComponent) => connect(mapState, null)(class Tabbar extend
     //  <div className={"iconfont " + item.img}></div>
     //    <div className="tabbar-text">{item.text}</div>
     //  </Link>
-    let status = Util.getSessionItem('loginState');
-    const CarNum = () => (status && this.props.carNum !== 0 ? <i>{this.props.carNum}</i> : null);
+    const { carNum, hideTabbar, loginStatus } = this.props;
+    const CarNum = () => (loginStatus && carNum !== 0 ? <i>{carNum}</i> : null);
 
     return (
       <React.Fragment>
         <div className="tabbar-children">
           <WrappedComponent {...this.props} />
         </div> 
-        <div className="tabbar" >
+        <div className="tabbar" style={{display: hideTabbar ? 'none' : 'block'}}>
           <div className="tabbar-content">
             {
               tabbarArr.map((item, i) => (
                 <NavLink to={item.link} key={i} className="tabbar-item" activeClassName="active" >
                   {item.link == '/car' ? <CarNum /> : null}
                   <div className={"iconfont " + item.img}></div>
-                  <div className="tabbar-text">{item.text}</div>
+                  <div className="tabbar-text">{item.text}{hideTabbar}</div>
                 </NavLink>
               ))
             }

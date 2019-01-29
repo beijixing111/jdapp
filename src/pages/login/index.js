@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../../components/navbar';
+
+import { connect } from 'react-redux';
+import { actionCreators } from './store';
+
 import Toast from '../../components/toast/';
 import Util, { check } from '../../util';
 import './index.scss';
@@ -15,7 +19,6 @@ class Login extends Component {
       password: '',
       passwordTip: false,
       highlight: false,
-      showToast: false,
     };
   }
   shouldComponentUpdate(newProps, newState) {
@@ -43,7 +46,6 @@ class Login extends Component {
     body.scrollTop = body.scrollHeight;
   }
   handlePwdBlur = () => {
-
     // IOS键盘收起后，页面滚动对应位置
     window.scroll(0, 0);
   }
@@ -59,30 +61,22 @@ class Login extends Component {
       });
     }
   }
-  handleSubmit = () => {
-    let account = this.state.account;
-    let password = this.state.password;
 
-    if (!account && !password) {
-      return; //Toast.info('请先填写信息哦！');
-    } else {
-      if (!check.checkPhone(account)) {
-        return Toast.info('手机号码格式不正确！');
-      }
-      if (!password || password.length < 6) {
-        return Toast.info('密码不能为空且长度不能小于6位！');
-      }
-      Util.setSessionItem('loginState', true);
-      this.props.history.push('/user');
-    }
+  componentDidMount() {
+
   }
+
   componentWillUnmount() {
 
   }
   render() {
+    const { loginStatus } = this.props;
+    if (loginStatus) {
+      return <Redirect to="/user" />;
+    }
     return (
       <div className=" ">
-      	<Navbar left={<Link to="/home">返回</Link>} center='京东登录' />
+      	<Navbar center='京东登录' {...this.props} />
       	<div className="login-content">
 					<div className="login-item">
 						<input type="text" placeholder="用户名 / 邮箱 / 手机号码" 
@@ -107,8 +101,9 @@ class Login extends Component {
 						>×</i>
 						<Link to="/findpw" className="forget-pw">忘记密码</Link>
 					</div>
-					<button type="button" className={this.state.highlight? 'login-btn highlight' : 'login-btn'} onClick={this.handleSubmit}>登&nbsp;&nbsp;录</button>
+					<button type="button" className={this.state.highlight? 'login-btn highlight' : 'login-btn'} onClick={() => this.props.handleLoginIn(this.state.account, this.state.password)}>登&nbsp;&nbsp;录</button>
       	</div> 
+        {/*<a  target="_blank" href="http://ddrest.yzsh58.com/apk/app-debug.apk">下载点点APP</a>*/}
         <div className="test">
           <p><a href="sms:18688886666">发短信给18888886666</a></p>
           <p><a href="tel:186 8888 6666">打电话给188 8888 6666</a></p>
@@ -121,4 +116,25 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapState = state => ({
+  loginStatus: state.getIn(['login', 'loginStatus'])
+});
+
+const mapDispatch = dispatch => ({
+  handleLoginIn(account, password) {
+    if (!account && !password) {
+      return; //Toast.info('请先填写信息哦！');
+    } else {
+      if (!check.checkPhone(account)) {
+        return Toast.info('手机号码格式不正确！');
+      }
+      if (!password || password.length < 6) {
+        return Toast.info('密码不能为空且长度不能小于6位！');
+      }
+      dispatch(actionCreators.loginIn({ account, password }));
+    }
+
+  }
+});
+
+export default connect(mapState, mapDispatch)(Login);

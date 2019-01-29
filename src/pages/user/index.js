@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Tabbar from '../../components/tabbar';
 import { Redirect, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Util from '../../util';
 import './index.scss';
 
@@ -21,7 +22,8 @@ const Navbar = () => (
 
 class User extends Component {
   render() {
-    if (!Util.getSessionItem('loginState')) {
+    const { loginStatus } = this.props;
+    if (!loginStatus) {
       return <Redirect to="/login" />
     }
     return (
@@ -96,4 +98,8 @@ class User extends Component {
   }
 }
 
-export default Tabbar(User);
+const mapState = state => ({
+  loginStatus: state.getIn(['login', 'loginStatus'])
+});
+
+export default Tabbar(connect(mapState, null)(User));

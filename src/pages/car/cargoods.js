@@ -6,7 +6,6 @@ import ModalWarp from '../../components/modal';
 import Toast from '../../components/toast';
 import { Modal, Button } from 'antd-mobile';
 import EmptyCar from './emptycar';
-import Format from '../../util/format';
 import Check from '../../util/check';
 import Util from '../../util';
 
@@ -16,42 +15,7 @@ class Goods extends Component {
   constructor(props) {
     super(props);
   }
-  returnGoodsArr(shopid, id, v) {
-    let value = v > 200 ? 200 : v;
-    value = value < 1 ? '' : value;
-    let goodslistArr = this.props.goodslist.map((shop) => {
-      if (shop && shop.shopid == shopid) {
-        shop.goods = shop.goods.map((item) => {
-          if (item.id == id) {
-            item.goodsNum = value;
-          }
-          return item;
-        });
-      }
-      return shop;
-    });
-    this.setState({
-      goodslist: goodslistArr,
-      total: this.totalSum(goodslistArr)
-    });
-  }
-  // changeValue(shopid, id, v) {
-  //   this.returnGoodsArr(shopid, id, v);
-  // }
-  handleClickMinus(shopid, item) {
-    // if (item.goodsNum - 1 == 0) {
-    //   Toast.info('不能再少了哦！');
-    // }
-    // let v = item.goodsNum - 1 < 1 ? 1 : item.goodsNum - 1;
-    // this.returnGoodsArr(shopid, item.id, v);
-  }
-  // handleClickAdd(shopid, item) {
-  //   if (item.goodsNum + 1 > 200) {
-  //     Toast.info('不能再加了哦！');
-  //   }
-  //   let v = item.goodsNum + 1 > 200 ? 200 : item.goodsNum + 1;
-  //   this.returnGoodsArr(shopid, item.id, v);
-  // }
+
   handleNumFocus() {
     let body = document.querySelector('.App');
     body.scrollTop = body.scrollHeight;
@@ -63,56 +27,6 @@ class Goods extends Component {
     window.scroll(0, 0);
   }
 
-  handleClickDel(shopid, item) {
-    let _this = this;
-    alert('提示', '确定要删除此订单么？', [
-      { text: '取消', onPress: () => console.log('cancel'), style: 'default' }, {
-        text: '确定',
-        onPress: () => {
-          let carNum = 0;
-          let goodslistArr = _this.props.goodslist.map(shop => {
-            if (shop && shop.shopid == shopid) {
-              let goodsArr = shop.goods.filter((_item) => {
-                return _item.id != item.id;
-              });
-              shop.goods = goodsArr;
-            }
-            if (shop.goods.length == 0) {
-              return null;
-            }
-            carNum += shop.goods.length;
-            return shop;
-          });
-          console.log(goodslistArr);
-          goodslistArr = goodslistArr.filter(shop => {
-            return shop != null;
-          });
-          // if()
-          console.log(_this.totalSum(goodslistArr));
-          this.checkedShopNum = goodslistArr.length != 0 ? this.checkedShopNum : 0;
-          _this.setState({
-            allchecked: (goodslistArr.length != 0 ? this.state.allchecked : false),
-            goodslist: goodslistArr,
-            total: _this.totalSum(goodslistArr),
-            carNum: carNum
-          });
-
-        }
-      }
-    ]);
-  }
-
-  handleClearCar = () => {
-    this.setState({
-      allchecked: false,
-      goodslist: [],
-      total: {
-        totalMoney: 0,
-        totalNumber: 0
-      },
-      carNum: 0
-    });
-  }
   componentDidMount() {
 
   }
@@ -121,7 +35,7 @@ class Goods extends Component {
   }
 
   render() {
-    const { goodslist, allchecked, total, checkedShopNum } = this.props;
+    const { goodslist, allchecked, total, checkedShopNum, } = this.props;
     console.log(this.props);
     const goodslistWarp = goodslist.map((shop) => {
       if (!shop) {
@@ -147,7 +61,7 @@ class Goods extends Component {
                 <div className="input-wrap">
                   <input type="text" type="tel" value={item.get('goodsNum')} max="200" 
                     onChange={(e) => this.props.handleChange(shopid, item.get('id'), e.target.value)}
-                    onBlur={(e) =>this.handleNumBlur(shopid, item.get('id'), e.target.value)}
+                    onBlur={(e) =>this.props.handleNumBlur(shopid, item.get('id'), e.target.value)}
                     onFocus={()=>this.handleNumFocus()}
                   />
                 </div>
@@ -156,7 +70,7 @@ class Goods extends Component {
             </div>
             <div className="sub-line">
               <span className="m_action_item" onClick={() => this.props.handleClickFollow(shopid, item)}>移入关注</span>
-              <span className="del" onClick={() => this.handleClickDel(shopid, item)}>删除</span>
+              <span className="del" onClick={() => this.props.handleClickDel(shopid, item)}>删除</span>
             </div>
           </div>
         </div>
@@ -178,19 +92,19 @@ class Goods extends Component {
         </div>);
     });
     return (
-      <div>
-        {goodslist.length != 0 ?
+      <div >
+        {goodslist.size != 0 ?
           <ModalWarp> 
-            <div className="bottom-nav">
+            <div className="bottom-nav" style={{ bottom : this.props.hideTabbar ? '0' : '1rem' }}>
               <div className="all-check" onClick={this.props.handleAllChecked}>
                 <i className={'active-icon select ' + (allchecked ? 'active' : '')}></i>
                 <span>全选</span>
               </div>
-              {allchecked ? <div className="clearcar" onClick={this.handleClearCar}>清空</div> : null}
+              {allchecked ? <div className="clearcar" onClick={this.props.handleClearCar}>清空</div> : null}
               <div className="total-box">
                 <div className="total-wrapper">
                   <p className="total-ji"><b>总计：</b>￥{total.get('totalMoney')}元</p>
-                  <p>总额￥{total.totalMoney}元 立减￥0.00元</p>
+                  <p>总额￥{total.get('totalMoney')}元 立减￥0.00元</p>
                 </div>
                 <div className="go-pay">去结算({total.get('totalNumber')})</div>
               </div>
@@ -199,7 +113,7 @@ class Goods extends Component {
         }
         
         <div className="goods-wrapper">
-          {goodslist.length != 0 ? goodslistWarp : <EmptyCar islogin={true} />} 
+          {goodslist.size != 0 ? goodslistWarp : <EmptyCar islogin={true} />} 
         </div>
       </div>
     );
@@ -211,21 +125,39 @@ const mapState = state => ({
   allchecked: state.getIn(['car', 'allchecked']),
   total: state.getIn(['car', 'total']),
   checkedShopNum: state.getIn(['car', 'checkedShopNum']),
-  carNum: state.getIn(['car', 'carNum'])
+  carNum: state.getIn(['car', 'carNum']),
+  hideTabbar: state.getIn(['car', 'hideTabbar'])
 });
 
 const mapDispatch = (dispatch) => ({
   handleChange(shopid, id, value) {
+    value = value > 200 ? 200 : value;
+    value = value < 1 ? '' : value;
     dispatch(actionCreators.changValue(shopid, id, value));
+  },
+  handleNumBlur(shopid, id, value) {
+    value = parseInt(value) && !isNaN(value) ? parseInt(value) : 1;
+    dispatch(actionCreators.changValue(shopid, id, value));
+    window.scroll(0, 0);
   },
   handleClickAdd(shopid, item) {
     dispatch(actionCreators.changValue(shopid, item.get('id'), item.get('goodsNum') + 1));
   },
   handleClickMinus(shopid, item) {
-    if (item.get('goodsNum') - 1 == 0) {
+    if (item.get('goodsNum') == 1) {
       return Toast.info('不能再少了哦！');
     }
     dispatch(actionCreators.changValue(shopid, item.get('id'), item.get('goodsNum') - 1));
+  },
+  handleClickDel(shopid, item) {
+    alert('提示', '确定要删除此商品么？', [
+      { text: '取消', onPress: () => console.log('cancel'), style: 'default' }, {
+        text: '确定',
+        onPress: () => {
+          dispatch(actionCreators.removeGoods(shopid, item));
+        }
+      }
+    ]);
   },
   handleAllChecked() {
     dispatch(actionCreators.allChecked());
@@ -233,9 +165,15 @@ const mapDispatch = (dispatch) => ({
   handleSingleChecked(shopid, item) {
     dispatch(actionCreators.singleChecked(shopid, item));
   },
-
   handleClearCar() {
-    // dispatch()
+    alert('提示', '确定要清空购物车么？', [
+      { text: '取消', onPress: () => console.log('cancel'), style: 'default' }, {
+        text: '确定',
+        onPress: () => {
+          dispatch(actionCreators.clearCar());
+        }
+      }
+    ]);
   },
   handleClickFollow(shopid, item) {
     return Toast.info('暂时没有关注功能哦！');

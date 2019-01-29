@@ -10,10 +10,6 @@ $pointer: 'cursor: pointer';
 	height: 100%; width: 100%; background: #fff;
 	overflow-y: auto; overflow-x: hidden;
 	-webkit-overflow-scrolling: touch;
-	p{
-		line-height: $header_h;
-		font-size: 16px;
-	}
 }
 
 .top-wrapper{

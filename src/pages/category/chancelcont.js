@@ -49,9 +49,9 @@ class ChancelCont extends Component {
 
   }
   render() {
-    let { match } = this.props;
-    if (match.params.id !== "1") {
-      return <div className="category-wrapper" style={{fontSize: 14,padding: '10px'}}>菜单{match.params.id}</div>;
+    console.log(this.props);
+    if (this.props.chancelId !== 1) {
+      return <div className="category-wrapper" style={{fontSize: 14,padding: '10px'}}>菜单{this.props.chancelId}</div>;
     }
     return (
       <div className="category-wrapper">
